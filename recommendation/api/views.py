@@ -55,6 +55,7 @@ class RecipeAPIView(APIView):
 
         # Convert queryset to DataFrame
         df = pd.DataFrame.from_records(recipes.values())
+        print(df.keys())
         #print(df["RecipeCategory"].unique())
         df_breakfast=df[df["RecipeCategory"]=="Breakfast"]
         df_breads=df[df["RecipeCategory"]=="Breads"]
