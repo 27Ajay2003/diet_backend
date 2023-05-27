@@ -76,6 +76,9 @@ class RecipeAPIView(APIView):
         top_100_dessert = df_dessert_sorted.head(15)
         top_100_dinner = df_dinner_sorted.head(15)
         
+        
+        print(top_100_breads)
+        
         a=top_100_breakfast["Calories"]
         b=top_100_breads["Calories"]
         c=top_100_lunch["Calories"]
