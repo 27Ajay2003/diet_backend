@@ -45,11 +45,13 @@ class RecipeAPIView(APIView):
         average_nutritional_requirements["Calories"]=calories
         print(average_nutritional_requirements)
         
+        print("ehy")
+        
         
         
         
         recipes = Recipe.objects.all()
-        
+        print("hhy")
 
         # Convert queryset to DataFrame
         df = pd.DataFrame.from_records(recipes.values())
