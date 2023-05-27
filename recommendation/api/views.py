@@ -68,6 +68,8 @@ class RecipeAPIView(APIView):
         df_dessert['CalorieDifference'] = abs(df_dessert['Calories'] - dessert)
         df_dinner['CalorieDifference'] = abs(df_dinner['Calories'] - dinner)
         
+        print("hello")
+        
         df_breakfast_sorted = df_breakfast.sort_values('CalorieDifference')
         df_breads_sorted = df_breads.sort_values('CalorieDifference')
         df_lunch_sorted = df_lunch.sort_values('CalorieDifference')
