@@ -15,6 +15,9 @@ import numpy as np
 from recommendation.models import Recipe
 
 class RecipeAPIView(APIView):
+    
+    def get(self,request):
+        return Response({'hello': 'success'})
     def post(self, request):
         try:
             weight= request.data["weight"]
