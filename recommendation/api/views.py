@@ -17,6 +17,49 @@ from recommendation.models import Recipe
 class RecipeAPIView(APIView):
     
     def get(self,request):
+        
+        weight=45
+        height=170
+        age=20
+        gender="male"
+        objective="gain weight faster"
+        activity_level="sedentary"
+        bmi=helper.calculate_bmi(weight, height)
+        print(bmi)
+        calories=helper.calculate_calorie_requirements(age, gender, weight, height, activity_level, objective)
+        print(calories)
+        meal_calories = helper.divide_calories(calories)
+        print(meal_calories)
+        breakfast=meal_calories[0]
+        breads=meal_calories[1]
+        lunch=meal_calories[2]
+        dessert=meal_calories[3]
+        dinner=meal_calories[4]
+        min_limit=helper.calculate_min_limits(age, weight, gender)
+        max_limit = helper.calculate_max_limits(age, weight, gender)
+        avg_limit=helper.calculate_average_limits(max_limit,min_limit)
+        average_nutritional_requirements=avg_limit
+        average_nutritional_requirements["Calories"]=calories
+        print(average_nutritional_requirements)
+        
+        print("ehy")
+        
+        
+        
+        
+        recipes = Recipe.objects.all()
+        print("hhy")
+
+        # Convert queryset to DataFrame
+        df = pd.DataFrame.from_records(recipes.values())
+        print(df.keys())
+        df_breakfast=df[df["RecipeCategory"]=="Breakfast"]
+        df_breads=df[df["RecipeCategory"]=="Breads"]
+        df_lunch=df[df["RecipeCategory"]=="Lunch"]
+        df_dessert=df[df["RecipeCategory"]=="Dessert"]
+        df_dinner=df[df["RecipeCategory"]=="Dinner"]
+        
+        
         return Response({'hello': 'success'})
     def post(self, request):
         try:
@@ -30,7 +73,6 @@ class RecipeAPIView(APIView):
             
         except KeyError:
             return Response({'error': 'Improper fields'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'hello': 'successes'})
         bmi=helper.calculate_bmi(weight, height)
         print(bmi)
         calories=helper.calculate_calorie_requirements(age, gender, weight, height, activity_level, objective)
