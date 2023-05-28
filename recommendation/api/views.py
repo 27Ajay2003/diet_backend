@@ -30,6 +30,7 @@ class RecipeAPIView(APIView):
             
         except KeyError:
             return Response({'error': 'Improper fields'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'hello': 'successes'})
         bmi=helper.calculate_bmi(weight, height)
         print(bmi)
         calories=helper.calculate_calorie_requirements(age, gender, weight, height, activity_level, objective)
